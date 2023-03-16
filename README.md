@@ -54,3 +54,5 @@ Thread.Stat(Enum)，可以通过getState()方法获取
 * BLOCKED
 
 ![img.png](./imgs/I1-22.png)
+
+# Intro 02. 多线程程序的评价指标
