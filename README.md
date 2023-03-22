@@ -56,3 +56,9 @@ Thread.Stat(Enum)，可以通过getState()方法获取
 ![img.png](./imgs/I1-22.png)
 
 # Intro 02. 多线程程序的评价指标
+* 安全性 safety----不损坏对象
+* 生存性 liveness----必要的处理能够被执行（不死锁）
+* 可重复性 reusability----类可重复利用
+* 性能 performance----能快速、大批量的执行
+
+# 第一章 Single Thread Execution 只能有一个人通过这个桥
