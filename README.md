@@ -131,7 +131,7 @@ Single Threaded Execution模式存在发生死锁的危险，满足下列条件�
 
 ## 想问的设计模式
 
-* Immutable 模式
+* [Immutable 模式](#第二章-immutable-模式想破坏也破坏不了)
 * Guarded Suspension 模式
 * Read-Write Lock 模式
 * Thread-Specific Storage 模式
