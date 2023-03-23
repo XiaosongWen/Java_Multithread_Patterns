@@ -1,4 +1,4 @@
-package chapter_0_intro1_java_thread.demo02;
+package chapter_00_intro1_java_thread.demo02;
 
 public class PrintRunnable implements Runnable{
     private String msg;

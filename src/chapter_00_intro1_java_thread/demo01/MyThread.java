@@ -1,4 +1,4 @@
-package chapter_0_intro1_java_thread.demo01;
+package chapter_00_intro1_java_thread.demo01;
 
 public class MyThread extends Thread{
     public void run() {
