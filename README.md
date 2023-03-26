@@ -129,7 +129,7 @@ Single Threaded Execution模式存在发生死锁的危险，满足下列条件�
 * 获取锁花费时间
 * 线程冲突引起的等待：如果尽可能的缩小临界区的范围，降低线程冲突的概率，那么就能够抑制性能的下降
 
-## 想问的设计模式
+## 相关的设计模式
 
 * [Immutable 模式](#第二章-Immutable-模式想破坏也破坏不了)
 * [Guarded Suspension 模式](#第三章-Guarded-Suspension-模式等我准备好了哦)
@@ -157,6 +157,51 @@ Single Threaded Execution模式存在发生死锁的危险，满足下列条件�
 
 # 第二章 Immutable 模式：想破坏也破坏不了
 
+Immutable模式中存在着确保实例状态不发生改变（Immutable）的类。在访问这些实例时并不需要执行耗时的互斥处理。
+
+[demo](./src/chapter_02_Immutable/demo1/Person.java)
+
+实现方式：将字段声明为final，并且不存在setter方法
+
+## Imutable 模式中登场角色
+
+* Immutable：
+
+  * 在Immutabl类中字段的值不可以被修改，也不存在修改字段内容的方法。
+  * Immutable角色实例被创建后，状态将不再发生变化。无需使用synchronized方法
+
+## 何时使用
+
+* 实例创建后不再发生变化
+* 实例时共享的，且被频繁访问：因为不需要使用synchronize进行保护也就意味着能够在不失去安全性和生存性的前提下提高性能
+
+### 成对的mutable类和immutable类
+StringBuilder vs String
+
+### 确保不可变性
+* 如果删掉final修饰符并加了setter方法，那么就会破坏Immutable模式
+* 如果把字段的实例直接作为getter方法的返回值也会破坏Immutable模式
+* 将构造函数的参数直接赋值给字段也会破坏Immutable模式
+
+## 相关的设计模式
+[Single Threaded Execution 模式](#第一章-Single-Threaded-Execution-模式只有一个线程)
+在Single Thread Execution模式中以下两种情况会发生conflict：
+* write-write conflict
+* read-write conflict
+Immmutable模式中只会发生read-read，不会产生conflict
+[Read-Write Lock 模式](#第六章-Read-Write-Lock-模式大家一起读没问题但读的时候不准写)
+[Flyweight 模式]()
+
+## 衍生阅读：
+#### final
+* final 类
+* final 方法
+* final 字段
+* final 变量和参数
+#### 集合类与多线程
+* 非线程安全的java.util.ArrayList类
+* Collections.synchronizedList
+* COpyOnWriteArrayList
 
 # 第三章 Guarded Suspension 模式:等我准备好了哦
 
