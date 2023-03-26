@@ -222,6 +222,37 @@ Guarded Suspension模式的实现封装在RequestQueue中。这样使用RequestQ
 [Future 模式](#第九章-Future-模式先给你提货单)
 
 # 第四章 Balking 模式：不需要就算了
+如果现在不适合执行某个操作，或者没有必要执行这个操作，就停止处理，直接返回。
+
+![img.png](./imgs/04_Baking.png)
+## 何时使用
+* 不需要执行时
+* 不需要等待守护条件成立时
+* 守护条件仅在第一个成立时
+
+## 相关的设计模式
+[Guraded Suspension 模式](#第三章-Guarded-Suspension-模式等我准备好了哦)
+[Observer 模式]()
+## Timeout
+* Balking模式在守护条件不成立时直接返回 
+* Guarded Suspension模式在守护条件不成立时会一直等待 
+* 介于这两种极端之间还可以有一种情况是“在守护条件成立之前等一段时间”
+
+### wait何时被终止：
+* notify/notifyall
+* interrupt
+* timeout
+
+我们无法区别wait是被notify了还是超时了，为了进行区分，在实现guarded timed时，需要检查当前时间和开始等待的时间的差值是否超过了超时时间。
+
+## synchronized的阻塞
+来看一下以下两种线程状态：
+1. 想要使用synchronized方法，但是没有获取到锁，线程处于阻塞状态
+2. 执行wait并进入等待队列的状态
+
+两者情况下线程都是不运行的，但是也存在不同
+1. 我们无法让（1）状态下的线程超时，因为syncronized方法和syncronized代码块都无法设置超时时间
+2. 对状态（1）下的线程执行interrupt方法，也不会InterruptedException异常，线程必须获取锁并进入syncronized代码块才会抛出InterruptedException异常
 
 # 第五章 Producer-Consumer 模式：我来做，你来用
 
