@@ -47,7 +47,7 @@ Thread.sleep(1000);
 * wait()方法
 * notify()方法
   * notify唤醒的线程不会立即开始运行，因为执行notify的线程还持有着锁
-    ![img.png](./imgs/I1-17.png)
+    ![notify](./imgs/I1-17.png)
 * notifyAll()方法
 
 该三个方法都是Object类的方法，与其说是对线程的操作不如说是针对实例的等待队列的操作
@@ -63,7 +63,7 @@ Thread.Stat(Enum)，可以通过getState()方法获取
 * TIMED_WAITING
 * BLOCKED
 
-![img.png](./imgs/I1-22.png)
+![Thread Status](./imgs/I1-22.png)
 
 # Intro 02. 多线程程序的评价指标
 
@@ -204,6 +204,22 @@ Immmutable模式中只会发生read-read，不会产生conflict
 * COpyOnWriteArrayList
 
 # 第三章 Guarded Suspension 模式:等我准备好了哦
+Guarded Suspension模式通过让线程等待来保证实例的安全性。在Guarded Suspension模式中，线程会一直等待直到某个条件成立。
+
+![Guarded Suspension Demo](./imgs/03-01.png)
+
+## Guarded Suspension模式中登场角色
+Guarded Object: 中包含guardedMethod和stateChangingMethod
+### 带附加条件的synchonized方法
+### 多线程版本的if
+### wait/notify 的可复用性
+wait/notifyall只出现[RequestQueue](./src/chapter_03_GuardedSuspension/demo1/RequestQueue.java)中，而没有出现在ClientThread,ServerThread和Main中.
+Guarded Suspension模式的实现封装在RequestQueue中。这样使用RequestQueue类的其他类不需要关心wait/notify的细节，只需要调用RequestQueue的方法即可。
+## 相关的设计模式
+[Single Threaded Execution 模式](#第一章-Single-Threaded-Execution-模式只有一个线程)
+[Balking 模式](#第四章-Balking-模式不需要就算了)
+[Producer-Consumer 模式](#第五章-Producer-Consumer-模式我来做你来用)
+[Future 模式](#第九章-Future-模式先给你提货单)
 
 # 第四章 Balking 模式：不需要就算了
 
