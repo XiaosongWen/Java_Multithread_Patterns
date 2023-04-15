@@ -255,6 +255,7 @@ Guarded Suspension模式的实现封装在RequestQueue中。这样使用RequestQ
 2. 对状态（1）下的线程执行interrupt方法，也不会InterruptedException异常，线程必须获取锁并进入syncronized代码块才会抛出InterruptedException异常
 
 # 第五章 Producer-Consumer 模式：我来做，你来用
+生产者安全的将数据交给消费者。 Producer-Consumer 模式在两者之间建立一个缓冲区，用于消除线程间处理速度的差异。
 
 # 第六章 Read-Write Lock 模式：大家一起读没问题，但读的时候不准写
 
